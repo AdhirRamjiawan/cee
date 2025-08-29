@@ -2,8 +2,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:CEE.ViewModels"
+        x:DataType="vm:MainViewModel"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CEE.MainWindow"
         Title="CEE">
-    Welcome to Avalonia!
+
+  <Design.DataContext>
+      <!-- This only sets the DataContext for the previewer in an IDE,
+           to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+      <vm:MainViewModel />
+  </Design.DataContext>
+
+  <TabControl>
+    <TabItem>
+     <TabItem.Header>
+       <StackPanel Orientation="Horizontal">
+         <Ellipse Width="10" Height="10" Fill="DarkGray"/>
+         <TextBlock>Tab 1</TextBlock>
+         <Button Command="{Binding BtnAddNewTab_Click}">+</Button>
+       </StackPanel>
+     </TabItem.Header>
+     <StackPanel>
+       <TextBox Watermark="Code goes here..." MaxLines="100" AcceptsReturn="True" AcceptsTab="True"></TextBox>
+     </StackPanel>
+    </TabItem>
+  </TabControl>
 </Window>
